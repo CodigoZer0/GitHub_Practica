@@ -1,0 +1,326 @@
+$mainColor: #fff200;
+$hoverColor: #ede100;
+$colorblack: #000;
+$colorwhite: #fff;
+$fontFamily: "Chakra Petch", Arial, Helvetica, sans-serif;
+
+%resaltar{
+    font-weight: 700;
+    font-style: italic;
+}
+%link{
+    text-decoration: none;
+    color: $colorblack;
+}
+%center{
+    display: block;
+    margin: 0 auto;
+}
+
+@mixin flexbox($justify, $align){
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    box-sizing: border-box;
+}
+@mixin input($bgColor,$textColor){
+    font-family: $fontFamily;
+    background-color: $bgColor;
+    color: $textColor;
+}
+
+@mixin navbar($color, $margin){
+    text-decoration: none;
+    color: $color;
+    margin: $margin;
+}
+
+body{
+    font-family: $fontFamily;
+    font-size: clamp(16px, 2vw, 20px);
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+
+    .header{
+        background-color: $mainColor;
+        color: $colorblack;
+        width: 100%;
+        box-sizing: border-box;
+        @include flexbox(start, center);
+
+        .header__logo{
+            display: inline-block;
+            width: 150px;
+            vertical-align: middle;
+
+        }
+        .header__nav{
+            a{
+                @include navbar($colorblack, 0 20px);
+            }
+            img{
+                width: 25px;
+                padding-right: 10px;
+                padding-top: 0;
+            }
+            .header__links{
+                &:hover{
+                    background-color: $hoverColor;
+                }
+            }
+            
+        }
+        
+
+    }
+    .main{
+        
+        background-color: $colorblack;
+        color: $colorwhite;
+        padding: 0 10px;
+        box-sizing: border-box;
+        & p{
+            text-align: justify;
+        }
+        &__title{
+            margin-top: 0;
+            font-size: 3em;
+            text-align: center;
+        }
+        &__subtitle{
+            font-size: 2em;
+            text-align: center;
+
+        }
+        &__minititle{
+            font-size: 1.5em;
+        }
+        table{
+            border-color: $mainColor;
+            color: $colorblack;
+            font-family: $fontFamily;
+            
+        }
+        thead{
+            background-color: $mainColor;
+        }
+        tbody{
+            background-color: #1d1d1d;
+            color: #fff;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 500;
+
+            & img{
+                width: 75px;
+            }
+            
+        }
+        .image_subtitle{
+            text-align: center;
+        }
+        .game_name{
+            color: $mainColor;
+
+        }
+        #superearth{
+            color: #127099;
+            @extend %resaltar;
+        }
+        #ciborgs{
+            color: #ff0000;
+            @extend %resaltar;
+        }
+        #terminids{
+            color: #ff9500;
+            @extend %resaltar;
+        }
+        #illuminates{
+            color: #3a24e4;
+            @extend %resaltar;
+        }
+        &__video--trailer{
+            text-align: center;
+            @extend %center;
+        }
+        & img{
+            @extend %center;
+        }
+        article{
+            @extend %center;
+            width: 99%;
+        }
+        &__last--song{
+            margin-bottom: auto;
+        }
+        &__select{
+            font-family: $fontFamily;
+            background-color: #fff200;
+            color: #000;
+        }
+        &__gallery{
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            
+            img{
+                width: 500px;
+                padding: 20px;
+            }
+            &--main--image{
+                grid-column: 1/4;
+                grid-row: 1/3;
+                width: 700px; 
+            }
+            
+        }
+        input[type="text"],
+        input[type="email"] {
+            @include input($mainColor, $colorblack);
+
+        }
+        .inputs{
+            width: 220px;
+            text-align: justify;
+        }
+        .button{
+            background-color: $colorblack;
+            color: $colorwhite;
+            border: 2px solid $mainColor;
+            margin: 20px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            font-family: $fontFamily;
+
+            &:hover{
+                background-color: $hoverColor;
+                color: $colorblack;
+            }
+        }
+    }
+    
+    
+    .footer{
+        background-color: $mainColor;
+        color: $colorblack;
+        width: 100%;
+        padding: 10px;
+        @include flexbox(space-between, center);
+        box-sizing: border-box;
+
+        &__copyright{
+            text-align: center;
+            font-size: 0.6em;
+            margin-bottom: 0;
+            padding: 0 200px;
+        }
+        &__subtitle{
+           margin-top: 0; 
+        }
+        &__social--media {
+            text-align: center;
+            & img{
+                width: 50px;
+                margin: 0 10px;
+            }
+        }
+
+    }
+    /* Responsive Design */
+    @media (max-width: 1280px) {
+        .header{
+            flex-direction: column;
+            text-align: center;
+
+            &__nav a{
+                margin: 10px 0;
+            }
+        }
+
+        .main{
+            padding: 0 20px;
+            box-sizing: border-box;
+
+            & img{
+                width: 100%;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+            &__gallery{
+                grid-template-columns: 1fr;
+                box-sizing: border-box;
+
+                & img{
+                    width: 100%;
+                    padding: 10px;
+                    box-sizing: border-box;
+                }
+                &--main--image{
+                    
+                    width: 100%; /* Ajustar imágenes al ancho del contenedor */
+                    padding: 10px; /* Espaciado entre imágenes */
+                    box-sizing: border-box;
+                }
+            }
+            &__video--trailer{
+                width: 100%;
+                @extend %center;
+            }
+            &__youtube--frame{
+                width: 100%; /* Ajustar videos al ancho del contenedor */
+                font-size: clamp(0.8rem, 2vw, 1rem); /* Ajustar tamaño del texto del enlace */
+                display: block;
+                text-align: center;
+                margin: 10px auto;
+            }
+            &__soundtrack{
+                width: 100%;
+                height: auto;
+                display: block;
+                margin: 0 auto;
+                text-align: center;
+            }
+            .buttons{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                box-sizing: border-box;
+            }
+        }
+
+    }    
+    
+    @media (max-width: 500px) {
+        .header{
+
+            &__nav {
+                display: flex;
+                flex-direction: column; /* Cambiar a columnas */
+                align-items: center; /* Centrar los elementos */
+                gap: 10px; /* Espaciado entre los enlaces */
+
+                & a {
+                    margin: 0; /* Eliminar márgenes laterales */
+                    width: 100%; /* Hacer que los enlaces ocupen todo el ancho */
+                    text-align: center; /* Centrar el texto */
+                }
+            }
+
+            
+            
+        }
+        .footer{
+            flex-direction: column;
+            text-align: center;
+            &__copyright{
+                padding: 0 20px;
+                box-sizing: border-box;
+            }
+        }
+    }
+}
